@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
-import { TiDelete } from "react-icons/ti";
 import { AppContext } from "../context/AppContext";
+import { FaMinusCircle } from "react-icons/fa";
+import { FaPlusCircle } from "react-icons/fa";
 const ExpenseItem = (props) => {
   const { dispatch, currency } = useContext(AppContext);
 
-  const handleDeleteExpense = () => {
+  const handleReduceExpense = () => {
     dispatch({
-      type: "DELETE_EXPENSE",
+      type: "REDUCE_10_EXPENSE",
       payload: props.id,
     });
   };
@@ -28,10 +29,18 @@ const ExpenseItem = (props) => {
         {props.cost}
       </td>
       <td>
-        <button onClick={(event) => increaseAllocation(props.name)}>+</button>
+        <FaPlusCircle
+          color="green"
+          size="2em"
+          onClick={(event) => increaseAllocation(props.name)}
+        ></FaPlusCircle>
       </td>
       <td>
-        <TiDelete size="1.5em" onClick={handleDeleteExpense}></TiDelete>
+        <FaMinusCircle
+          color="red"
+          size="2em"
+          onClick={handleReduceExpense}
+        ></FaMinusCircle>
       </td>
     </tr>
   );
