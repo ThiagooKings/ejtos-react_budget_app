@@ -65,6 +65,24 @@ export const AppReducer = (state, action) => {
         ...state,
         budget,
       };
+    case "DELETE_EXPENSE":
+      action.type = "DONE";
+      state.expenses.map((currentExp) => {
+        if (currentExp.cost === 0) {
+          alert(
+            "It was not possible to delete expenses for this item as it is already 0!"
+          );
+        } else if (currentExp.name === action.payload) {
+          budget = state.budget + currentExp.cost;
+          currentExp.cost = 0;
+        }
+        return currentExp;
+      });
+      action.type = "DONE";
+      return {
+        ...state,
+        budget,
+      };
     case "SET_BUDGET":
       action.type = "DONE";
       state.budget = action.payload;
