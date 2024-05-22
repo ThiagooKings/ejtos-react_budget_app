@@ -1,14 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 
 const Currency = () => {
   const { dispatch, currency } = useContext(AppContext);
 
-  const [newCurrency, setNewCurrency] = useState(currency);
-
   const changeCurrency = (val) => {
-    setNewCurrency(val);
-
     dispatch({
       type: "CHG_CURRENCY",
       payload: val,
@@ -17,10 +13,10 @@ const Currency = () => {
 
   return (
     <div className="alert alert-secondary">
-      {" "}
-      Currency{` ${newCurrency}`}
+      Currency:{" "}
       {
         <select
+          className="select-currency"
           name="Currency"
           id="Currency"
           defaultValue={currency}
